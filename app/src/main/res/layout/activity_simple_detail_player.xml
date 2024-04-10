@@ -36,7 +36,7 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+    <com.shuyu.gsyvideoplayer.video.ListGSYVideoPlayer
         android:id="@+id/detail_player"
         android:layout_width="match_parent"
         android:layout_height="@dimen/post_media_height" />
