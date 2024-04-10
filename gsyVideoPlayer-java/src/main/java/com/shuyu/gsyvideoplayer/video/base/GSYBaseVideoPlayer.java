@@ -389,6 +389,7 @@ public abstract class GSYBaseVideoPlayer extends GSYVideoControlView {
         }
         getGSYVideoManager().setListener(getGSYVideoManager().lastListener());
         getGSYVideoManager().setLastListener(null);
+        Debuger.printfLog(this.hashCode() + "------------------------------ resolveNormalVideoShow");
         setStateAndUi(mCurrentState);
         addTextureView();
         mSaveChangeViewTIme = System.currentTimeMillis();

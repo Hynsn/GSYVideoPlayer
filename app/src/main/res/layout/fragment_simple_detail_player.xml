@@ -20,12 +20,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/post_media_height" />
 
-            <Button
-                android:id="@+id/btn_replace"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="替换" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,9 +34,4 @@
         android:id="@+id/detail_player"
         android:layout_width="match_parent"
         android:layout_height="@dimen/post_media_height" />
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 </RelativeLayout>

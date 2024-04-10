@@ -28,6 +28,7 @@ import java.util.List;
 public class DetailListPlayer extends GSYBaseActivityDetail<ListGSYVideoPlayer> {
 
     ActivityDeatilListPlayerBinding binding;
+    private String url = "https://testonline-image.vesync.com/videoStreaming/recipeVideoData/v1/ee8ca41550fda4d1739b004b1cd42fdd.m3u8";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +45,10 @@ public class DetailListPlayer extends GSYBaseActivityDetail<ListGSYVideoPlayer> 
 
         //String url = "http://baobab.wd jcdn.com/14564977406580.mp4";
         List<GSYVideoModel> urls = new ArrayList<>();
-        urls.add(new GSYVideoModel("http://7xjmzj.com1.z0.glb.clouddn.com/20171026175005_JObCxCE2.mp4", "标题1"));
-        urls.add(new GSYVideoModel("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", "标题2"));
-        urls.add(new GSYVideoModel("https://res.exexm.com/cw_145225549855002", "标题3"));
-        urls.add(new GSYVideoModel("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", "标题4"));
+        urls.add(new GSYVideoModel(url, "标题1"));
+//        urls.add(new GSYVideoModel("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", "标题2"));
+//        urls.add(new GSYVideoModel("https://res.exexm.com/cw_145225549855002", "标题3"));
+//        urls.add(new GSYVideoModel("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", "标题4"));
         binding.detailPlayer.setUp(urls, true, 0);
 
         //增加封面
@@ -84,7 +85,7 @@ public class DetailListPlayer extends GSYBaseActivityDetail<ListGSYVideoPlayer> 
                 ((ListGSYVideoPlayer) binding.detailPlayer.getCurrentPlayer()).playNext();
             }
         });
-
+        binding.detailPlayer.startPlayLogic();
     }
 
     @Override

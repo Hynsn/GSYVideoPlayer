@@ -8,10 +8,13 @@ import androidx.media3.exoplayer.source.MediaSource;
 import androidx.multidex.MultiDexApplication;
 
 import com.example.gsyvideoplayer.exosource.GSYExoHttpDataSourceFactory;
+import com.shuyu.gsyvideoplayer.cache.CacheFactory;
+import com.shuyu.gsyvideoplayer.player.PlayerFactory;
 
 import java.io.File;
 import java.util.Map;
 
+import tv.danmaku.ijk.media.exo2.Exo2PlayerManager;
 import tv.danmaku.ijk.media.exo2.ExoMediaSourceInterceptListener;
 import tv.danmaku.ijk.media.exo2.ExoPlayerCacheManager;
 import tv.danmaku.ijk.media.exo2.ExoSourceManager;
@@ -35,7 +38,7 @@ public class GSYApplication extends MultiDexApplication {
         //GSYVideoType.enableMediaCodec();
         //GSYVideoType.enableMediaCodecTexture();
 
-        //PlayerFactory.setPlayManager(Exo2PlayerManager.class);//EXO模式
+        PlayerFactory.setPlayManager(Exo2PlayerManager.class);//EXO模式
         //ExoSourceManager.setSkipSSLChain(true);
 
 
@@ -43,7 +46,7 @@ public class GSYApplication extends MultiDexApplication {
         //PlayerFactory.setPlayManager(IjkPlayerManager.class);//ijk模式
         //PlayerFactory.setPlayManager(AliPlayerManager.class);//aliplay模式
 
-        //CacheFactory.setCacheManager(ExoPlayerCacheManager.class);//exo缓存模式，支持m3u8，只支持exo
+        CacheFactory.setCacheManager(ExoPlayerCacheManager.class);//exo缓存模式，支持m3u8，只支持exo
         //CacheFactory.setCacheManager(ProxyCacheManager.class);//代理缓存模式，支持所有模式，不支持m3u8等
 
         //GSYVideoType.setShowType(GSYVideoType.SCREEN_MATCH_FULL);

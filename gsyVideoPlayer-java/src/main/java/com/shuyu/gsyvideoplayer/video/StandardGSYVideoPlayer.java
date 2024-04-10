@@ -413,6 +413,7 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
                 if (mBottomContainer.getVisibility() == View.VISIBLE) {
                     changeUiToPauseClear();
                 } else {
+                    Debuger.printfLog("changeUiToPauseShow 1");
                     changeUiToPauseShow();
                 }
             }

@@ -313,6 +313,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
      */
     @Override
     protected void setStateAndUi(int state) {
+        Debuger.printfLog(GSYVideoControlView.this.hashCode() + "------------------------------ state:" + state);
         mCurrentState = state;
         if ((state == CURRENT_STATE_NORMAL && isCurrentMediaListener())
                 || state == CURRENT_STATE_AUTO_COMPLETE || state == CURRENT_STATE_ERROR) {
@@ -702,7 +703,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
         if (mChangePosition) {
             long totalTimeDuration = getDuration();
             mSeekTimePosition = (int) (mDownPosition + (deltaX * totalTimeDuration / curWidth) / mSeekRatio);
-            if(mSeekTimePosition < 0) {
+            if (mSeekTimePosition < 0) {
                 mSeekTimePosition = 0;
             }
             if (mSeekTimePosition > totalTimeDuration)
@@ -765,7 +766,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
             long duration = getDuration();
             long progress = mSeekTimePosition * 100 / (duration == 0 ? 1 : duration);
             if (mBottomProgressBar != null)
-                mBottomProgressBar.setProgress((int)progress);
+                mBottomProgressBar.setProgress((int) progress);
         }
 
         mTouchingProgressBar = false;
@@ -774,10 +775,10 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
         dismissBrightnessDialog();
         if (mChangePosition && getGSYVideoManager() != null && (mCurrentState == CURRENT_STATE_PLAYING || mCurrentState == CURRENT_STATE_PAUSE)) {
             try {
-//                如果是 m3u8 可能会需要这个
-//                if(mSeekTimePosition == 0) {
-//                    mSeekTimePosition = 1;
-//                }
+                //                如果是 m3u8 可能会需要这个
+                //                if(mSeekTimePosition == 0) {
+                //                    mSeekTimePosition = 1;
+                //                }
                 getGSYVideoManager().seekTo(mSeekTimePosition);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -785,7 +786,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
             long duration = getDuration();
             long progress = mSeekTimePosition * 100 / (duration == 0 ? 1 : duration);
             if (mProgressBar != null) {
-                mProgressBar.setProgress((int)progress);
+                mProgressBar.setProgress((int) progress);
             }
             if (mVideoAllCallBack != null && isCurrentMediaListener()) {
                 Debuger.printfLog("onTouchScreenSeekPosition");
@@ -827,6 +828,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
      * @param state
      */
     protected void resolveUIState(int state) {
+        Debuger.printfLog("resolveUIState " + state);
         switch (state) {
             case CURRENT_STATE_NORMAL:
                 changeUiToNormal();
@@ -841,6 +843,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
                 startDismissControlViewTimer();
                 break;
             case CURRENT_STATE_PAUSE:
+                Debuger.printfLog("changeUiToPauseShow 2");
                 changeUiToPauseShow();
                 cancelDismissControlViewTimer();
                 break;
@@ -964,7 +967,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
             return;
         }
         if (!mTouchingProgressBar) {
-            if (progress != 0 || forceChange) mProgressBar.setProgress((int)progress);
+            if (progress != 0 || forceChange) mProgressBar.setProgress((int) progress);
         }
         if (getGSYVideoManager().getBufferedPercentage() > 0) {
             secProgress = getGSYVideoManager().getBufferedPercentage();
@@ -976,7 +979,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
             mCurrentTimeTextView.setText(CommonUtil.stringForTime(currentTime));
 
         if (mBottomProgressBar != null) {
-            if (progress != 0 || forceChange) mBottomProgressBar.setProgress((int)progress);
+            if (progress != 0 || forceChange) mBottomProgressBar.setProgress((int) progress);
             setSecondaryProgress(secProgress);
         }
     }
@@ -984,12 +987,12 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
     protected void setSecondaryProgress(long secProgress) {
         if (mProgressBar != null) {
             if (secProgress != 0 && !getGSYVideoManager().isCacheFile()) {
-                mProgressBar.setSecondaryProgress((int)secProgress);
+                mProgressBar.setSecondaryProgress((int) secProgress);
             }
         }
         if (mBottomProgressBar != null) {
             if (secProgress != 0 && !getGSYVideoManager().isCacheFile()) {
-                mBottomProgressBar.setSecondaryProgress((int)secProgress);
+                mBottomProgressBar.setSecondaryProgress((int) secProgress);
             }
         }
     }
@@ -1131,9 +1134,9 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
     protected abstract void dismissBrightnessDialog();
 
     /**
-     * @param  e MotionEvent 存在 null 的情况，外部使用需要判空
-     *           null 时说明不是手动触发而是自动触发的
-     * */
+     * @param e MotionEvent 存在 null 的情况，外部使用需要判空
+     *          null 时说明不是手动触发而是自动触发的
+     */
     protected abstract void onClickUiToggle(MotionEvent e);
 
     protected abstract void hideAllWidget();

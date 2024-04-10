@@ -183,8 +183,8 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
     @Override
     protected void showPauseCover() {
         if (mCurrentState == CURRENT_STATE_PAUSE && mFullPauseBitmap != null
-            && !mFullPauseBitmap.isRecycled() && mShowPauseCover
-            && mSurface != null && mSurface.isValid()) {
+                && !mFullPauseBitmap.isRecycled() && mShowPauseCover
+                && mSurface != null && mSurface.isValid()) {
             if (getGSYVideoManager().isSurfaceSupportLockCanvas()) {
                 try {
                     RectF rectF = new RectF(0, 0, mTextureView.getWidth(), mTextureView.getHeight());
@@ -208,7 +208,7 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
     protected void releasePauseCover() {
         try {
             if (mCurrentState != CURRENT_STATE_PAUSE && mFullPauseBitmap != null
-                && !mFullPauseBitmap.isRecycled() && mShowPauseCover) {
+                    && !mFullPauseBitmap.isRecycled() && mShowPauseCover) {
                 mFullPauseBitmap.recycle();
                 mFullPauseBitmap = null;
             }
@@ -289,12 +289,12 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
         } catch (InflateException e) {
             if (e.toString().contains("GSYImageCover")) {
                 Debuger.printfError("********************\n" +
-                    "*****   注意   *****" +
-                    "********************\n" +
-                    "*该版本需要清除布局文件中的GSYImageCover\n" +
-                    "****  Attention  ***\n" +
-                    "*Please remove GSYImageCover from Layout in this Version\n" +
-                    "********************\n");
+                        "*****   注意   *****" +
+                        "********************\n" +
+                        "*该版本需要清除布局文件中的GSYImageCover\n" +
+                        "****  Attention  ***\n" +
+                        "*Please remove GSYImageCover from Layout in this Version\n" +
+                        "********************\n");
                 e.printStackTrace();
                 throw new InflateException("该版本需要清除布局文件中的GSYImageCover，please remove GSYImageCover from your layout");
             } else {
@@ -308,7 +308,7 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
      */
     protected void startButtonLogic() {
         if (mVideoAllCallBack != null && (mCurrentState == CURRENT_STATE_NORMAL
-            || mCurrentState == CURRENT_STATE_AUTO_COMPLETE)) {
+                || mCurrentState == CURRENT_STATE_AUTO_COMPLETE)) {
             Debuger.printfLog("onClickStartIcon");
             mVideoAllCallBack.onClickStartIcon(mOriginUrl, mTitle, this);
         } else if (mVideoAllCallBack != null) {
@@ -478,13 +478,14 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
         mCachePath = cachePath;
         mOriginUrl = url;
         if (isCurrentMediaListener() &&
-            (System.currentTimeMillis() - mSaveChangeViewTIme) < CHANGE_DELAY_TIME)
+                (System.currentTimeMillis() - mSaveChangeViewTIme) < CHANGE_DELAY_TIME)
             return false;
         mCurrentState = CURRENT_STATE_NORMAL;
         this.mUrl = url;
         this.mTitle = title;
         if (changeState)
-            setStateAndUi(CURRENT_STATE_NORMAL);
+            Debuger.printfLog(this.hashCode() + "-----------------setUp--- CURRENT_STATE_NORMAL:");
+        setStateAndUi(CURRENT_STATE_NORMAL);
         return true;
     }
 
@@ -506,7 +507,7 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
         }
         try {
             if (getGSYVideoManager() != null &&
-                getGSYVideoManager().isPlaying()) {
+                    getGSYVideoManager().isPlaying()) {
                 setStateAndUi(CURRENT_STATE_PAUSE);
                 mCurrentPosition = getGSYVideoManager().getCurrentPosition();
                 if (getGSYVideoManager() != null)
@@ -795,7 +796,7 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
     public void release() {
         mSaveChangeViewTIme = 0;
         if (isCurrentMediaListener() &&
-            (System.currentTimeMillis() - mSaveChangeViewTIme) > CHANGE_DELAY_TIME) {
+                (System.currentTimeMillis() - mSaveChangeViewTIme) > CHANGE_DELAY_TIME) {
             releaseVideos();
         }
     }
@@ -844,7 +845,7 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
 
     protected boolean isCurrentMediaListener() {
         return getGSYVideoManager().listener() != null
-            && getGSYVideoManager().listener() == this;
+                && getGSYVideoManager().listener() == this;
     }
 
     /**
@@ -945,7 +946,7 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
      */
     public boolean isInPlayingState() {
         return (mCurrentState >= 0 && mCurrentState != CURRENT_STATE_NORMAL
-            && mCurrentState != CURRENT_STATE_AUTO_COMPLETE && mCurrentState != CURRENT_STATE_ERROR);
+                && mCurrentState != CURRENT_STATE_AUTO_COMPLETE && mCurrentState != CURRENT_STATE_ERROR);
     }
 
     /**

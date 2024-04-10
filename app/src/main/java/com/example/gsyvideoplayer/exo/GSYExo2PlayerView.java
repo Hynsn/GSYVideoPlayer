@@ -234,7 +234,7 @@ public class GSYExo2PlayerView extends StandardGSYVideoPlayer {
         }
         if (getGSYVideoManager() != null && mHadPlay) {
             /**增加这个可以实现拖动后重新播放*/
-            if(!isInPlayingState()) {
+            if (!isInPlayingState()) {
                 setStateAndUi(CURRENT_STATE_PLAYING);
                 addTextureView();
             }
@@ -280,6 +280,7 @@ public class GSYExo2PlayerView extends StandardGSYVideoPlayer {
     @Override
     public void onCompletion() {
         //make me normal first
+        Debuger.printfLog("onCompletion " + CURRENT_STATE_NORMAL);
         setStateAndUi(CURRENT_STATE_NORMAL);
 
         mSaveChangeViewTIme = 0;
@@ -307,7 +308,6 @@ public class GSYExo2PlayerView extends StandardGSYVideoPlayer {
 
         releaseNetWorkState();
     }
-
 
 
     /**********以下重载GSYVideoPlayer的GSYVideoViewBridge相关实现***********/
