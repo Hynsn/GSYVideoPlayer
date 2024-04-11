@@ -34,6 +34,7 @@ public class SimpleActivity extends AppCompatActivity implements View.OnClickLis
 
         binding.simpleDetail1.setOnClickListener(this);
         binding.simpleDetail2.setOnClickListener(this);
+        binding.simpleDetail3.setOnClickListener(this);
         binding.simpleList1.setOnClickListener(this);
         binding.simpleList2.setOnClickListener(this);
         binding.simplePlayer.setOnClickListener(this);
@@ -69,6 +70,9 @@ public class SimpleActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.simple_detail_1:
                 startActivity(new Intent(this, SimpleDetailActivityMode1.class));
+                break;
+            case R.id.simple_detail_3:
+                startActivity(new Intent(this, SimpleDetailActivityMode3.class));
                 break;
             case R.id.simple_detail_2:
                 startActivity(new Intent(this, SimpleDetailActivityMode2.class));
